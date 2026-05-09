@@ -74,6 +74,49 @@ STRICT RULES:
 - Do NOT skip fields
 - Output ONLY valid JSON
 
+- technicalQuestions must contain EXACTLY 5 items
+- behavioralQuestions must contain EXACTLY 5 items
+- skillGaps must contain AT LEAST 5 items
+- preparationPlan must contain AT LEAST 5 items
+
+- DO NOT return empty arrays
+- If unsure, generate realistic content anyway
+
+If any array is empty, the response is INVALID
+
+Example:
+{
+  "matchScore": 75,
+  "technicalQuestions": [
+    {
+      "question": "Explain event loop in Node.js",
+      "intention": "Check async understanding",
+      "answer": "The event loop handles async operations..."
+    }
+  ],
+  "behavioralQuestions": [
+    {
+      "question": "Tell me about a challenge you faced",
+      "intention": "Assess problem-solving",
+      "answer": "Describe situation, action, result..."
+    }
+  ],
+  "skillGaps": [
+    {
+      "skill": "System Design",
+      "severity": "medium"
+    }
+  ],
+  "preparationPlan": [
+    {
+      "day": 1,
+      "focus": "Data Structures",
+      "tasks": ["Solve 5 array problems"]
+    }
+  ],
+  "title": "Full Stack Developer"
+}
+
 Now generate based on:
 
 Resume: ${resume}
@@ -89,7 +132,22 @@ Job Description: ${jobDescription}
         }
     })
 
-    return(response.text)
+    const parsed = JSON.parse(response.text)
+
+// validate structure
+const validated = interviewReportSchema.parse(parsed)
+
+// strict enforcement 
+if (
+    validated.technicalQuestions.length !== 5 ||
+    validated.behavioralQuestions.length !== 5 ||
+    validated.skillGaps.length < 5 ||
+    validated.preparationPlan.length < 5
+) {
+    throw new Error("AI returned invalid structured data")
+}
+
+return validated
 
    
 

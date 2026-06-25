@@ -5,7 +5,7 @@ const interviewRouter= express.Router()
 const upload= require("../middleware/file.middleware")
 /**
  * @route POST /api/interview
- * @descriptio generate new interview Report on the bassi of
+ * @description generate new interview Report on the bassi of
    self description, resume pdf and job description.
    @access private
  */

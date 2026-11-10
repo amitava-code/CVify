@@ -8,7 +8,7 @@ const authRouter = Router()
  * @description Register a new user
  * @access Public
  */
-authRouter.post("/register", authController.resgisterController)
+authRouter.post("/register", authController.registerController)
 
 
 /**
@@ -17,4 +17,13 @@ authRouter.post("/register", authController.resgisterController)
  * @access Public
  */
 authRouter.post("/login", authController.loginController)
+
+
+/**
+ * @route GET /api/auth/logout
+ * @description clear token from user cookie and add token in blakclist
+ * @access public
+ */
+authRouter.get("/logout", authController.logoutController)
+
 module.exports = authRouter

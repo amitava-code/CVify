@@ -36,10 +36,35 @@ const interviewReportSchema = z.object({
 
 async function generateInterviewReport({ resume, selfDescription, jobDescription }){
 
-  const prompt = `Generate an interview report for a candidate with the following details:
-                        Resume: ${resume}
-                        Self Description: ${selfDescription}
-                        Job Description: ${jobDescription}`
+  const prompt =  `You are an expert technical interviewer and career coach.
+Analyze the candidate against the job description and generate an interview report.
+
+Resume: ${resume}
+
+Self Description: ${selfDescription}
+
+Job Description: ${jobDescription}
+
+Return ONLY a JSON object with exactly these camelCase fields and no others:
+- title: the job title from the job description (string)
+- matchScore: integer from 0 to 100 showing how well the candidate matches the job
+- technicalQuestions: 6 to 8 items, each with:
+    - question (string)
+    - intention: what the interviewer wants to find out (string)
+    - answer: how to answer it, with key points to cover (string)
+- behavioralQuestions: 4 to 5 items, each with question, intention and answer (strings)
+- skillGaps: skills the job requires that the candidate lacks, each with:
+    - skill (string)
+    - severity: exactly "low", "medium" or "high"
+- preparationPlan: a 7-day plan, each item with:
+    - day: number starting from 1
+    - focus: the main topic of the day (string)
+    - tasks: 2 to 4 specific tasks (array of strings)
+
+Rules:
+- Base everything on this candidate's actual resume and this specific job description.
+- Never return empty strings, empty tasks or null values.
+- Use the field names exactly as written above. Do not add or rename fields.`
 
 
 
@@ -50,12 +75,17 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
 
     config: {
       responseMimeType:"application/json",
-      responseJsonSchema: zodToJsonSchema(interviewReportSchema)
+      responseJSONSchema: zodToJsonSchema(interviewReportSchema)
 
     }
   })
 
-  console.log (JSON.parse(respone.text))
+
+  // console.log(JSON.parse(respone.text))
+
+  // console.log( interviewReportSchema.parse(JSON.parse(respone.text)))
+
+  return JSON.parse(response.text)
 
 
 }

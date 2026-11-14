@@ -67,7 +67,7 @@ const skillGapsSchema = new mongoose.Schema({
 })
 
 
-const  preperationPlanSchema = new mongoose.Schema({
+const  preparationPlanSchema = new mongoose.Schema({
 
   day:{
     type:Number,
@@ -87,6 +87,12 @@ const  preperationPlanSchema = new mongoose.Schema({
 
 const interviewReportSchema = new mongoose.Schema({
 
+  title:{
+
+    type:String
+
+  },
+
   jobDescription: {
     type:String,
     required:[true, "job description is required"]
@@ -105,13 +111,13 @@ const interviewReportSchema = new mongoose.Schema({
   technicalQuestions:[ technicalQuestionSchema ],
   behavioralQuestions: [ behavioralQuestionSchema ],
   skillGaps: [ skillGapsSchema ],
-  preperationPlan: [ preperationPlanSchema ]
+  preparationPlan: [ preparationPlanSchema]
 
 },{
   timestamps: true
 })
 
 
-const interviewReportModel = mongoose.modell("InterviewReport", interviewReportSchema)
+const interviewReportModel = mongoose.model("InterviewReport", interviewReportSchema)
 
 module.exports = interviewReportModel

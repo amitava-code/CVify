@@ -1,0 +1,699 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap");
+
+$cream: #f4f0e6;
+$black: #111111;
+$yellow: #ffd400;
+$orange: #ff5a1f;
+$white: #ffffff;
+$shadow: 8px;
+
+.home {
+    min-height: 100vh;
+    width: 100%;
+    padding: 40px 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Space Mono", monospace;
+    color: $black;
+    background-color: $cream;
+    background-image:
+        linear-gradient($black 1px, transparent 1px),
+        linear-gradient(90deg, $black 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: -1px -1px;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    // main card
+    .interview-input-grp {
+        position: relative;
+        width: 100%;
+        max-width: 1000px;
+        padding: 40px 32px 32px;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+
+        background: $white;
+        border: 4px solid $black;
+        box-shadow: $shadow $shadow 0 $black;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+        // circle accent
+        &::before {
+            content: "";
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 18px;
+            height: 18px;
+            border: 3px solid $black;
+            border-radius: 50%;
+            background: $yellow;
+        }
+
+        // sticker on the top edge
+        &::after {
+            content: "\2731  AI INTERVIEW PREP";
+            position: absolute;
+            top: -20px;
+            left: 24px;
+            padding: 4px 12px;
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+
+            background: $yellow;
+            border: 3px solid $black;
+            box-shadow: 3px 3px 0 $black;
+            transform: rotate(-3deg);
+        }
+
+        &:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: ($shadow + 4px) ($shadow + 4px) 0 $black;
+        }
+    }
+
+    // left: job description
+    .left {
+        display: flex;
+
+        textarea {
+            flex: 1;
+            min-height: 380px;
+        }
+    }
+
+    // right: resume + self description + button
+    .right {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        label {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        p {
+            margin: 0;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+    }
+
+    // yellow highlighted hint text
+    .highlight {
+        display: inline-block;
+        margin-top: 6px;
+        padding: 2px 8px;
+
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0;
+        text-transform: none;
+        line-height: 1.5;
+
+        background: $yellow;
+        border: 2px solid $black;
+    }
+
+    // shared textarea style
+    textarea {
+        width: 100%;
+        padding: 0.85rem 1rem;
+
+        font-family: inherit;
+        font-size: 14px;
+        line-height: 1.6;
+        color: $black;
+
+        background: $cream;
+        border: 3px solid $black;
+        border-radius: 0;
+        outline: none;
+        resize: vertical;
+        box-shadow: 4px 4px 0 $black;
+        transition: transform 0.1s ease, box-shadow 0.1s ease,
+            background 0.1s ease;
+
+        &::placeholder {
+            color: rgba($black, 0.45);
+        }
+
+        &:focus {
+            background: $yellow;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 $black;
+        }
+    }
+
+    #selfDescription {
+        min-height: 140px;
+    }
+
+    // upload button (label acting as a button)
+    .file-label {
+        display: block;
+        padding: 0.85rem 1rem;
+
+        font-weight: 700;
+        text-align: center;
+        color: $black;
+
+        background: $yellow;
+        border: 3px dashed $black;
+        box-shadow: 4px 4px 0 $black;
+        cursor: pointer;
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+
+        &:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 $black;
+        }
+
+        &:active {
+            transform: translate(3px, 3px);
+            box-shadow: 0 0 0 $black;
+        }
+    }
+
+    // main action button
+    .generate-btn {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        margin-top: auto;
+
+        font-family: "Baloo 2", sans-serif;
+        font-weight: 800;
+        font-size: 20px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: $white;
+
+        background: $orange;
+        border: 4px solid $black;
+        border-radius: 0;
+        cursor: pointer;
+        box-shadow: 6px 6px 0 $black;
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+
+        &:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 $black;
+        }
+
+        &:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0 0 0 $black;
+        }
+
+        &:focus-visible {
+            outline: 3px dashed $black;
+            outline-offset: 4px;
+        }
+    }
+
+    // tablet / mobile: stack the columns
+    @media (max-width: 800px) {
+        .interview-input-grp {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .left textarea {
+            min-height: 220px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 36px 16px;
+
+        .interview-input-grp {
+            padding: 36px 20px 24px;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+// @import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap");
+
+// $cream: #f4f0e6;
+// $panel: #fff6e0;
+// $black: #111111;
+// $yellow: #ffd400;
+// $orange: #ff5a1f;
+// $white: #ffffff;
+// $green: #a8d5ba;
+// $pink: #f7b8f5;
+// $shadow: 8px;
+
+// .home {
+//     min-height: 100vh;
+//     width: 100%;
+//     padding: 32px 24px;
+
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+//     font-family: "Space Mono", monospace;
+//     color: $black;
+//     background-color: $cream;
+//     background-image:
+//         linear-gradient($black 1px, transparent 1px),
+//         linear-gradient(90deg, $black 1px, transparent 1px);
+//     background-size: 40px 40px;
+//     background-position: -1px -1px;
+
+//     * {
+//         box-sizing: border-box;
+//     }
+
+//     // ---------- outer app frame ----------
+//     .app-frame {
+//         width: 100%;
+//         max-width: 1200px;
+
+//         display: grid;
+//         grid-template-columns: 220px 1fr;
+
+//         background: $green;
+//         border: 4px solid $black;
+//         box-shadow: $shadow $shadow 0 $black;
+//     }
+
+//     // ---------- sidebar ----------
+//     .sidebar {
+//         padding: 24px 16px;
+
+//         display: flex;
+//         flex-direction: column;
+//         gap: 2rem;
+
+//         .logo {
+//             align-self: flex-start;
+//             padding: 4px 12px;
+
+//             font-family: "Baloo 2", sans-serif;
+//             font-weight: 800;
+//             font-size: 22px;
+
+//             background: $white;
+//             border: 3px solid $black;
+//             box-shadow: 3px 3px 0 $black;
+//             transform: rotate(-2deg);
+//         }
+
+//         nav ul {
+//             margin: 0;
+//             padding: 0;
+//             list-style: none;
+
+//             display: flex;
+//             flex-direction: column;
+//             gap: 8px;
+//         }
+
+//         nav a,
+//         .logout {
+//             display: block;
+//             padding: 10px 12px;
+
+//             font-weight: 700;
+//             font-size: 14px;
+//             color: $black;
+//             text-decoration: none;
+
+//             border: 3px solid transparent;
+//             transition: background 0.1s ease, transform 0.1s ease;
+
+//             &:hover {
+//                 background: $white;
+//                 border-color: $black;
+//                 transform: translate(-2px, -2px);
+//                 box-shadow: 3px 3px 0 $black;
+//             }
+//         }
+
+//         .active a {
+//             background: $black;
+//             color: $white;
+//         }
+
+//         .logout {
+//             margin-top: auto;
+//             border-color: $black;
+//             background: $yellow;
+//         }
+//     }
+
+//     // ---------- main content panel ----------
+//     .content {
+//         padding: 32px;
+
+//         display: flex;
+//         flex-direction: column;
+//         gap: 2.5rem;
+
+//         background: $panel;
+//         border-left: 4px solid $black;
+//     }
+
+//     .topbar {
+//         h1 {
+//             margin: 0 0 8px;
+
+//             font-family: "Baloo 2", sans-serif;
+//             font-weight: 800;
+//             font-size: clamp(32px, 5vw, 48px);
+//             line-height: 1.1;
+//             text-transform: uppercase;
+//         }
+
+//         p {
+//             margin: 0;
+//             font-size: 14px;
+//         }
+//     }
+
+//     // ---------- two cards: job description + resume ----------
+//     .interview-input-grp {
+//         display: grid;
+//         grid-template-columns: 1.2fr 1fr;
+//         gap: 1.75rem;
+//     }
+
+//     .left,
+//     .right {
+//         padding: 20px;
+
+//         display: flex;
+//         flex-direction: column;
+//         gap: 1.25rem;
+
+//         border: 4px solid $black;
+//         box-shadow: 6px 6px 0 $black;
+//         transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+//         &:hover {
+//             transform: translate(-3px, -3px);
+//             box-shadow: 9px 9px 0 $black;
+//         }
+//     }
+
+//     .left {
+//         background: $yellow;
+
+//         .card-title {
+//             align-self: flex-start;
+//             margin: 0;
+//             padding: 2px 12px;
+
+//             font-family: "Baloo 2", sans-serif;
+//             font-weight: 800;
+//             font-size: 18px;
+//             text-transform: uppercase;
+
+//             color: $yellow;
+//             background: $black;
+//             transform: rotate(-1deg);
+//         }
+
+//         textarea {
+//             flex: 1;
+//             min-height: 360px;
+//             background: $white;
+
+//             &:focus {
+//                 background: $cream;
+//             }
+//         }
+//     }
+
+//     .right {
+//         background: $white;
+//     }
+
+//     .input-group {
+//         display: flex;
+//         flex-direction: column;
+//         gap: 0.75rem;
+
+//         label,
+//         p {
+//             margin: 0;
+//             font-size: 13px;
+//             font-weight: 700;
+//             letter-spacing: 0.04em;
+//             text-transform: uppercase;
+//         }
+//     }
+
+//     .highlight {
+//         display: inline-block;
+//         margin-top: 6px;
+//         padding: 2px 8px;
+
+//         font-size: 11px;
+//         font-weight: 400;
+//         letter-spacing: 0;
+//         text-transform: none;
+//         line-height: 1.5;
+
+//         background: $yellow;
+//         border: 2px solid $black;
+//     }
+
+//     // shared textarea style
+//     textarea {
+//         width: 100%;
+//         padding: 0.85rem 1rem;
+
+//         font-family: inherit;
+//         font-size: 14px;
+//         line-height: 1.6;
+//         color: $black;
+
+//         background: $cream;
+//         border: 3px solid $black;
+//         border-radius: 0;
+//         outline: none;
+//         resize: vertical;
+//         box-shadow: 4px 4px 0 $black;
+//         transition: transform 0.1s ease, box-shadow 0.1s ease,
+//             background 0.1s ease;
+
+//         &::placeholder {
+//             color: rgba($black, 0.45);
+//         }
+
+//         &:focus {
+//             background: $yellow;
+//             transform: translate(2px, 2px);
+//             box-shadow: 2px 2px 0 $black;
+//         }
+//     }
+
+//     #selfDescription {
+//         min-height: 140px;
+//     }
+
+//     // upload label styled as a button
+//     .file-label {
+//         display: block;
+//         padding: 0.85rem 1rem;
+
+//         text-align: center;
+//         color: $black;
+
+//         background: $pink;
+//         border: 3px dashed $black;
+//         box-shadow: 4px 4px 0 $black;
+//         cursor: pointer;
+//         transition: transform 0.1s ease, box-shadow 0.1s ease;
+
+//         &:hover {
+//             transform: translate(-2px, -2px);
+//             box-shadow: 6px 6px 0 $black;
+//         }
+
+//         &:active {
+//             transform: translate(3px, 3px);
+//             box-shadow: 0 0 0 $black;
+//         }
+//     }
+
+//     .generate-btn {
+//         width: 100%;
+//         padding: 0.85rem 1rem;
+//         margin-top: auto;
+
+//         font-family: "Baloo 2", sans-serif;
+//         font-weight: 800;
+//         font-size: 20px;
+//         letter-spacing: 0.04em;
+//         text-transform: uppercase;
+//         color: $white;
+
+//         background: $orange;
+//         border: 4px solid $black;
+//         border-radius: 0;
+//         cursor: pointer;
+//         box-shadow: 6px 6px 0 $black;
+//         transition: transform 0.1s ease, box-shadow 0.1s ease;
+
+//         &:hover {
+//             transform: translate(-3px, -3px);
+//             box-shadow: 9px 9px 0 $black;
+//         }
+
+//         &:active {
+//             transform: translate(4px, 4px);
+//             box-shadow: 0 0 0 $black;
+//         }
+
+//         &:focus-visible {
+//             outline: 3px dashed $black;
+//             outline-offset: 4px;
+//         }
+//     }
+
+//     // ---------- how it works ----------
+//     .section-title {
+//         margin: 0 0 1.25rem;
+
+//         font-family: "Baloo 2", sans-serif;
+//         font-weight: 800;
+//         font-size: clamp(26px, 4vw, 36px);
+//         text-transform: uppercase;
+//     }
+
+//     .steps {
+//         display: grid;
+//         grid-template-columns: repeat(3, 1fr);
+//         gap: 1.25rem;
+//     }
+
+//     .step {
+//         padding: 16px;
+
+//         display: flex;
+//         flex-direction: column;
+//         gap: 10px;
+
+//         background: $white;
+//         border: 3px solid $black;
+//         box-shadow: 5px 5px 0 $black;
+//         transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+//         &:nth-child(1) {
+//             background: $pink;
+//         }
+
+//         &:nth-child(2) {
+//             background: $green;
+//         }
+
+//         &:hover {
+//             transform: translate(-3px, -3px);
+//             box-shadow: 8px 8px 0 $black;
+//         }
+
+//         .step-num {
+//             align-self: flex-start;
+//             padding: 0 10px;
+
+//             font-family: "Baloo 2", sans-serif;
+//             font-weight: 800;
+//             font-size: 22px;
+
+//             color: $white;
+//             background: $black;
+//         }
+
+//         p {
+//             margin: 0;
+//             font-size: 13px;
+//             line-height: 1.6;
+//         }
+//     }
+
+//     // ---------- responsive ----------
+//     @media (max-width: 960px) {
+//         .interview-input-grp {
+//             grid-template-columns: 1fr;
+//         }
+
+//         .left textarea {
+//             min-height: 220px;
+//         }
+//     }
+
+//     @media (max-width: 760px) {
+//         padding: 20px 12px;
+
+//         .app-frame {
+//             grid-template-columns: 1fr;
+//         }
+
+//         // sidebar becomes a top bar
+//         .sidebar {
+//             padding: 16px;
+//             flex-direction: row;
+//             flex-wrap: wrap;
+//             align-items: center;
+//             gap: 12px;
+
+//             nav {
+//                 order: 3;
+//                 width: 100%;
+//             }
+
+//             nav ul {
+//                 flex-direction: row;
+//                 flex-wrap: wrap;
+//             }
+
+//             .logout {
+//                 margin: 0 0 0 auto;
+//             }
+//         }
+
+//         .content {
+//             padding: 20px 16px;
+//             border-left: none;
+//             border-top: 4px solid $black;
+//         }
+
+//         .steps {
+//             grid-template-columns: 1fr;
+//         }
+//     }
+// }
+
+
